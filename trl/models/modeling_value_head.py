@@ -261,6 +261,9 @@ class AutoModelForCausalLMWithValueHead(PreTrainedModelWrapper):
 
             self.is_sequential_parallel = True
 
+    @property
+    def device(self):
+        return self.v_head.summary.weight.device
 
 class AutoModelForSeq2SeqLMWithValueHead(PreTrainedModelWrapper):
     r"""

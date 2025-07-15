@@ -208,7 +208,7 @@ class RewardTrainer(Trainer):
         # issued.
         model.warnings_issued["estimate_tokens"] = True
 
-        if "input_ids_chosen" not in train_dataset.column_names:
+        if  "input_ids_chosen" not in train_dataset.column_names:
             with PartialState().main_process_first():
                 fn_kwargs = {"tokenizer": processing_class}
                 train_dataset = train_dataset.map(maybe_apply_chat_template, fn_kwargs={"tokenizer": processing_class})

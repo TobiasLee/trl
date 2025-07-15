@@ -1,0 +1,27 @@
+# Example configuration for eval_rm.py
+# This evaluates multiple trained reward models on the same evaluation dataset
+
+# Model directories to evaluate (can specify multiple)
+model_dirs:
+  - "vlm_reward_model_balance_100_en_zh_total30k"
+
+# Dataset path (same as used in training)
+dataset_path: "/mnt/user-ssd/lilei35/trl/balance_100_en_zh_total30k"
+
+# Base model path
+base_model_path: "/mnt/user-ssd/lilei35/oss_models/Qwen2.5-VL-7B-Instruct"
+
+# Checkpoint pattern to match (e.g., "checkpoint-*" for all, "checkpoint-[12]*" for specific range)
+checkpoint_pattern: "checkpoint-*"
+
+# Evaluation settings
+eval_batch_size: 2 
+max_eval_samples: null    # Set to a number to limit evaluation samples for testing
+
+# Output file
+output_file: "evaluation_results.csv"
+
+# Model configuration
+attn_implementation: "flash_attention_2"
+min_pixels: 6272  # 8 * 28 * 28
+max_pixels: 1605632  # 4096 * 28 * 28 

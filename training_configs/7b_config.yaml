@@ -1,0 +1,41 @@
+# Model configuration
+# Path to pretrained model or model identifier from huggingface.co/models
+model_name_or_path: /mnt/user-ssd/lilei35/oss_models/Qwen2.5-VL-7B-Instruct
+# Attention implementation: "sdpa" or "flash_attention_2"
+attn_implementation: flash_attention_2
+# Allow custom model code execution
+# Use bfloat16 precision
+# Image processing parameters
+min_pixels: 6272  # 8 * 28 * 28
+max_pixels: 3211264  # 4096 * 28 * 28
+
+# Data processing configuration
+# Path to the dataset
+dataset_path: /mnt/user-ssd/lilei35/trl/preference_data_250520_doubao_vs_mimo_10k
+# Maximum sequence length for tokenization
+max_seq_length: 3072
+# Optional: limit samples for debugging
+max_train_samples: null
+max_eval_samples: null
+
+# Training configuration
+# Output directory for checkpoints and logs
+output_dir: ./vlm_reward_model_debug
+# Training hyperparameters
+num_train_epochs: 3 
+per_device_train_batch_size: 1
+per_device_eval_batch_size: 4
+gradient_accumulation_steps: 8
+learning_rate: 1.0e-5
+# Training loop settings
+eval_steps: 20
+save_steps: 500
+warmup_steps: 100
+logging_steps: 10
+# Optimization settings
+gradient_checkpointing: true
+disable_dropout: true
+# DeepSpeed configuration file
+deepspeed: zero2.json 
+bf16: true 
+eval_on_start: true 
